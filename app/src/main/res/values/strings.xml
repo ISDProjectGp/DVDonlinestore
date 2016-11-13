@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">DVDonlinestore</string>
+
+    //  MainActivity //
+    <string name="searchHint">Search for DVD / Movie </string>
+    <string name="action_settings">action_setting</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+
+    // MainActivity //
+    <string name="action_bar_tittle_main_activity">Main Page</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
+    <string name="title_activity_shopping_cart">ShoppingCartActivity</string>
+    <string name="title_activity_moive_detail">MoiveDetailActivity</string>
+    <string name="drawer_open">drawer_open</string>
+    <string name="drawer_close">draw_close</string>
+
+    //
+</resources>

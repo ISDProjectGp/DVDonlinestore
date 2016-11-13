@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:background="#404040"
+      >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:padding="7dp"
+        android:background="#202020"
+        android:layout_weight="0.01">
+
+        <ImageView
+            android:layout_width="76dp"
+            android:layout_height="match_parent"
+            android:id="@+id/imgeview_poster" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My moive name is very very long"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:id="@+id/tv_moive_list_row_title"
+                android:layout_weight="0.65" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="On screen day 15-01-2016"
+                android:layout_marginTop="5dp"
+                android:textColor="#A0A0A0"
+                android:textSize="10dp"
+                android:id="@+id/textView9"
+                />
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <RatingBar
+                    android:layout_width="194dp"
+                    android:layout_height="50dp"
+                    android:isIndicator="true"
+                    android:id="@+id/ratingBar_moive_list_row" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="3.5 / 4"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:id="@+id/tv_rating"
+                    android:layout_gravity="bottom" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
