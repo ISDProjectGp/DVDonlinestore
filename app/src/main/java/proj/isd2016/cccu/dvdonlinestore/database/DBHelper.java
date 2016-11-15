@@ -68,64 +68,71 @@ public class DBHelper extends SQLiteOpenHelper {
         return result > 0;
     }
 
-  /*  //TODO
-    public List<Moive> getAllMoivesName()
-    {
 
-    }*/
+    public Moive getMoivesDetails(String id)
+    {
+        String[] columns = {DBQueryConstant.SUMMARY,DBQueryConstant.MOVE_TITLE,DBQueryConstant.RATING,DBQueryConstant.PRICE};
+
+        String selections = DBQueryConstant.MOIVE_ID + " = '"+ id +"'";
+
+        Cursor cursor = getReadableDatabase().query(
+                DBQueryConstant.MOVIE_TABLE_NAME,
+                columns, selections, null, null, null, null, null);
+
+        // TODO : PRICE
+        Moive moive = null;
+
+        while (cursor.moveToNext()) {
+            moive = new Moive(id,cursor.getInt(3),cursor.getString(1),cursor.getDouble(2),cursor.getString(0));
+        }
+        return moive;
+    }
 
     /*public Moive getMoive(int moiveID)
     {
 
 
     }*/
-//TODO USE IMDB ID TO DO
-    private int getNumberOfMoive()
+
+    public boolean isMoiveExists(String moiveID)
     {
-        String[] columns = {DBQueryConstant.MOIVE_ID};
+        String[] columns = {DBQueryConstant.MOVE_TITLE};
 
-        Cursor cursor = getReadableDatabase().query(
-                DBQueryConstant.MOVIE_TABLE_NAME,
-                columns, null, null, null, null, null, null);
-        int num = 0;
-        while (cursor.moveToNext()) {
-            num++;
-        }
-        return num;
-    }
-
-    public String getMoiveID(String moiveTittle)
-    {
-        String[] columns = {DBQueryConstant.MOIVE_ID};
-
-        String selections = DBQueryConstant.MOVE_TITLE + " = '"+ moiveTittle +"'";
+        String selections = DBQueryConstant.MOIVE_ID + " = '"+ moiveID +"'";
 
         Cursor cursor = getReadableDatabase().query(
                 DBQueryConstant.MOVIE_TABLE_NAME,
                 columns, selections, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
-            return String.valueOf(cursor.getInt(0));
+           return true;
         }
-        return null;
+        return false;
     }
 
-    public boolean insertMoive(String moiveTitle , String summary)
+    public boolean insertMoive(Moive moive)
     {
-        //if (moive == null | moive.getMoiveTitle() == null || moive.getSummary() == null ) return false;
-        if ( moiveTitle == null || summary == null ) return false;
+        if (isNullMoive(moive)) return false;
 
         ContentValues cv = new ContentValues();
-        cv.put(DBQueryConstant.MOIVE_ID,getNumberOfMoive());
-        cv.put(DBQueryConstant.MOVE_TITLE,moiveTitle);
-        cv.put(DBQueryConstant.SUMMARY, summary);
-        //cv.put(DBQueryConstant.PRICE, account.getAge());
+        cv.put(DBQueryConstant.MOIVE_ID,moive.getMoiveID());
+        cv.put(DBQueryConstant.MOVE_TITLE,moive.getMoiveTitle());
+        cv.put(DBQueryConstant.SUMMARY, moive.getSummary());
+        cv.put(DBQueryConstant.RATING, moive.getRating());
+        cv.put(DBQueryConstant.PRICE, moive.getPrice());
 
         long result = getWritableDatabase().insert(DBQueryConstant.MOVIE_TABLE_NAME, null, cv) ;
-
         return result>0;
     }
 
+    private boolean isNullMoive(Moive moive)
+    {
+        if (moive == null)
+        {
+            return true;
+        }
+        return false;
+    }
 
     public Cursor getAllMoivesCursor()
     {
@@ -139,7 +146,8 @@ public class DBHelper extends SQLiteOpenHelper {
         };*///TODO : MAKE IT AS RESULT SET
         Cursor cursor = getReadableDatabase().rawQuery( "select rowid as _id,"
                 +DBQueryConstant.MOVE_TITLE+","
-                +DBQueryConstant.MOIVE_ID
+                +DBQueryConstant.MOIVE_ID+","
+                +DBQueryConstant.RATING
                 +" from "
                 +DBQueryConstant.MOVIE_TABLE_NAME, null);
 

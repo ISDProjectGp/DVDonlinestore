@@ -6,13 +6,13 @@ package proj.isd2016.cccu.dvdonlinestore.database;
 public class Moive {
 
     private int price ;
-    private int rating ;
+    private double rating ;
 
-    private int moiveID;
+    private String moiveID;
     private String summary;
     private String moiveTitle;
 
-    public Moive(int moiveID, int price,String moiveTitle,int rating,String summary) {
+    public Moive(String moiveID, int price,String moiveTitle,double rating,String summary) {
         this.price = price;
         this.moiveID = moiveID;
         this.moiveTitle = moiveTitle;
@@ -20,7 +20,7 @@ public class Moive {
         this.summary = summary;
     }
 
-    public int getMoiveID() {
+    public String getMoiveID() {
         return moiveID;
     }
 
@@ -28,7 +28,7 @@ public class Moive {
         return moiveTitle;
     }
 
-    public int getRating() {
+    public double getRating() {
         return rating;
     }
 

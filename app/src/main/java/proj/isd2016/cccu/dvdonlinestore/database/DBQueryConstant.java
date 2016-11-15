@@ -35,11 +35,11 @@ public class DBQueryConstant {
             " )";
 
     public static final String CREATE_MOIVE_TABLE = " Create table "+ MOVIE_TABLE_NAME +" ( " +
-            MOIVE_ID + " int ," +
+            MOIVE_ID + " varchar(40) ," +
             MOVE_TITLE+ " varchar(40) PRIMARY KEY NOT NULL," +
             ON_SCREEN_DATE+ " int," +
             PRICE+ " int," +
-            RATING+ " int," +
+            RATING+ " REAL," +
             SUMMARY+" text" +
             " )";
 

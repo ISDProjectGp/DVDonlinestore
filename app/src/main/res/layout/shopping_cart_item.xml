@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202020"
+    android:orientation="horizontal"
+    tools:context="proj.isd2016.cccu.dvdonlinestore.purchaseItem"
+
+    >
+
+    <LinearLayout
+        android:paddingLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="117dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1"
+        android:paddingRight="5dp">
+        <!--image-->
+        <ImageView
+
+            android:layout_marginRight="10dp"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/sausage"
+            android:id="@+id/poster"
+            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="217dp"
+            android:layout_height="120dp"
+            android:weightSum="1"
+            android:id="@+id/layout">
+
+            <TextView
+                android:fontFamily="sans-serif-light"
+                android:textStyle="normal"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="21dp"
+                android:textColor="#FFFFFF"
+                android:text="Sausage Party (2016)"
+                android:id="@+id/textView12"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:fontFamily="sans-serif-light"
+                android:textStyle="normal"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="#808080"
+                android:text="by Conrad Vernon"
+                android:id="@+id/textView8" />
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="normal"
+                    android:layout_width="185dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="#FFFFFF"
+                    android:text="$545"
+                    android:id="@+id/textView2" />
+
+                <TextView
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="normal"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:textSize="20dp"
+                    android:textColor="#FFFFFF"
+                    android:text="1"
+                    android:id="@+id/textView13" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--line-->
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.io.File;
@@ -39,30 +40,36 @@ public class MoiveListAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
 
         String moiveTitle = cursor.getString(cursor.getColumnIndexOrThrow(DBQueryConstant.MOVE_TITLE));
-        int moiveID = cursor.getInt(cursor.getColumnIndexOrThrow(DBQueryConstant.MOIVE_ID));
+        String moiveID = cursor.getString(cursor.getColumnIndexOrThrow(DBQueryConstant.MOIVE_ID));
+        double rating = cursor.getDouble(cursor.getColumnIndexOrThrow(DBQueryConstant.RATING));
 
         TextView moive_title = (TextView) view.findViewById(R.id.tv_moive_list_row_title);
         moive_title.setText(moiveTitle);
 
         ImageView img = (ImageView) view.findViewById(R.id.imgeview_poster);
-        loadImageFromStorage(context,String.valueOf(moiveID),img);
-        System.out.println(moiveID);
+        loadImageFromStorage(context, moiveID, img);
+
+        TextView rating_text = (TextView) view.findViewById(R.id.tv_rating);
+        rating_text.setText(rating + " / 4");
+
+        RatingBar ratingBar = (RatingBar) view.findViewById(R.id.ratingBar_moive_list_row);
+        ratingBar.setRating((float)rating);
+        ratingBar.setFocusable(false);
     }
 
     private void loadImageFromStorage(Context context,String filename,ImageView img)
     {
         ContextWrapper cw = new ContextWrapper(context);
+        final String posterPath ="movie_posters_"+filename+".jpg";
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         // Create imageDir
-        File mypath=new File(directory,"moive"+filename+".jpg");
+        File mypath=new File(directory,posterPath);
         try {
             Bitmap b = BitmapFactory.decodeStream(new FileInputStream(mypath));
             img.setImageBitmap(b);
-            System.out.println("set");
         }
         catch (FileNotFoundException e)
         {
-            System.out.println("fail");
         }
 
     }

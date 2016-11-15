@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.database.sqlite.SQLiteCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -52,8 +53,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import proj.isd2016.cccu.dvdonlinestore.database.DBHelper;
+import proj.isd2016.cccu.dvdonlinestore.database.DBQueryConstant;
+import proj.isd2016.cccu.dvdonlinestore.database.Moive;
 import proj.isd2016.cccu.dvdonlinestore.database.Singleton;
 
 public class MainActivity extends BaseActivity {
@@ -62,6 +66,7 @@ public class MainActivity extends BaseActivity {
     Handler mHandler;
     MoiveListAdapter moiveListAdapter;
     AVLoadingIndicatorView loadingview;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,8 @@ public class MainActivity extends BaseActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
         }
+
+
         // Search widget //
 
         // handler used to handle the message sent from another thread
@@ -94,12 +101,34 @@ public class MainActivity extends BaseActivity {
 
     }
 
+
+
     private void initListView()
     {
         moive_list = (ListView) findViewById(R.id.moive_listview);
         DBHelper helper = new DBHelper(getApplicationContext());
         moiveListAdapter = new MoiveListAdapter(getApplicationContext(),helper.getAllMoivesCursor(),0);
         moive_list.setAdapter(moiveListAdapter);
+
+        moive_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+
+                Object object = moive_list.getItemAtPosition(position);
+                SQLiteCursor cursor = (SQLiteCursor) object;
+
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+
+                bundle.putString("moiveId", cursor.getString(cursor.getColumnIndex(DBQueryConstant.MOIVE_ID)));
+                System.out.println(cursor.getString(cursor.getColumnIndex(DBQueryConstant.MOIVE_ID)));
+
+                intent.putExtras(bundle);
+                intent.setClass(getApplicationContext(), MoiveDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initViews() {
@@ -149,27 +178,41 @@ public class MainActivity extends BaseActivity {
             Elements elements_title = doc.select("a[href*='?ref_=inth_ov_tt']");     // html objects with element a and attribute href that contain ?ref_=inth_ov_tt
             Elements elements_summary = doc.select("div[itemprop='description']");   // html objects with element div and attribute itemprop that equal desciption
             Elements elements_picture = doc.select("img[class='poster shadowed']"); // html objects with element image and attribute class that equal poster_shadowed
+            Elements elements_ratingExist = doc.select("  div[class*='rating_txt']");
 
             DBHelper dbHelper = new DBHelper(context);
+            Random randomNum = new Random();
 
             for (int i=0 ; i<elements_summary.size() ;i++)
             {
-                final String moiveTitle = elements_title.get(i).text().replaceAll("'","");
-                final String moiveSummary = elements_summary.get(i).text();
+                final String href = elements_title.get(i).attr("href");
+                final String moiveId = href.substring(href.indexOf("/", 2) + 1, href.indexOf("/", 10));
 
-                // TODO AUTO INCRETMENT
-                // If the moive title not exists in the database
-                if (dbHelper.getMoiveID(moiveTitle)==null)
+                double rating = 0 ;
+
+                switch(elements_ratingExist.get(i).children().size())
                 {
-                    // insert the moive data into database
-                    dbHelper.insertMoive(moiveTitle, moiveSummary);
-                    // download the picture //
+                    case 0: rating = randomNum.nextInt(101); break;
+                    case 1: rating = Integer.valueOf(elements_ratingExist.get(i).child(0).child(0).text()); break;
+                    case 2: rating = Integer.valueOf(elements_ratingExist.get(i).child(1).child(0).text()); break;
+                }
+                rating = (rating/100.0)*4.0;
+
+                final String moiveTitle = elements_title.get(i).text().replaceAll("'", "");
+                final String moiveSummary = elements_summary.get(i).text();
+                final int price = randomNum.nextInt(301)+50;
+
+                // If the moive title not exists in the database
+                if (!dbHelper.isMoiveExists(moiveId))
+                {
+                    Moive moive = new Moive(moiveId,price,moiveTitle,rating,moiveSummary);
+
+                    dbHelper.insertMoive(moive);  // insert the moive data into database
+                    Log.i(getClass().getName(), moiveId);
                     Bitmap poster = null;
-                    poster = getMoivePoster(elements_picture.get(i).absUrl("src"));
-                    // Store the picture downloaded into internal storage //
+                    poster = getMoivePoster(elements_picture.get(i).absUrl("src"));  // download the picture //
                     if (poster != null) {
-                        // Use moive id as the filename of picture //
-                        StoreMoivePoster(dbHelper.getMoiveID(moiveTitle), poster);
+                        StoreMoivePoster(moiveId, poster);  // Store the picture downloaded into internal storage // // Use moive id as the filename of picture //
                     }
                 }
             }
@@ -191,8 +234,10 @@ public class MainActivity extends BaseActivity {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         // path to /data/data/yourapp/app_data/imageDir
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
+        final String posterPath ="movie_posters_"+filename+".jpg";
+
         // Create imageDir
-        File mypath=new File(directory,"moive"+filename+".jpg");
+        File mypath=new File(directory,posterPath);
 
         FileOutputStream out = null;
         try {

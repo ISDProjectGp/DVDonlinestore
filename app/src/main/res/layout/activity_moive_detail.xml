@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Sausage Party (2016)"
         android:textSize="15sp"
-        android:id="@+id/textView10"
+        android:id="@+id/tv_moive_name2"
         android:textColor="#FFFFFF"
         android:background="#660000"
         android:paddingLeft="8dp"
@@ -60,7 +60,7 @@
                 android:textSize="21dp"
                 android:textColor="#FFFFFF"
                 android:text="Sausage Party (2016)"
-                android:id="@+id/textView12"
+                android:id="@+id/tv_moive_name"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
@@ -97,7 +97,7 @@
                     android:textSize="25dp"
                     android:textColor="#FFFFFF"
                     android:text="3.5 / 4"
-                    android:id="@+id/textView2" />
+                    android:id="@+id/tv_star" />
             </LinearLayout>
 
             <LinearLayout
@@ -123,7 +123,7 @@
                     android:textSize="25dp"
                     android:textColor="#FFFFFF"
                     android:text="1 win"
-                    android:id="@+id/textView3" />
+                    android:id="@+id/tv_win" />
             </LinearLayout>
 
         </LinearLayout>
@@ -160,7 +160,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="The adventures of writer Newt Scamander in New York&apos;s secret community of witches and wizards seventy years before Harry Potter reads his book in school."
-            android:id="@+id/textView11"
+            android:id="@+id/summary"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
            />
@@ -172,7 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Purchase"
-        android:id="@+id/button"
+        android:id="@+id/btn_purchase"
         android:background="#cc3300"
         android:textColor="#FFFFFF"/>
 
