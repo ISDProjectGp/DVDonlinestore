@@ -2,103 +2,114 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#202020"
+    android:background="@drawable/loginbackground"
     tools:context="proj.isd2016.cccu.dvdonlinestore.RegisterActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="473dp"
+        android:layout_height="wrap_content"
 
         android:padding="20dp"
-       >
-
-        <ImageView
-            android:layout_width="212dp"
-            android:layout_height="65dp"
-            android:layout_marginTop="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/imageView2"
-            android:src="@drawable/appicon"
-            android:layout_gravity="center_horizontal" />
+        android:weightSum="1">
 
         <TextView
-            android:layout_gravity="center_horizontal"
+
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:text="Sign Up to discover shows you&apos;ll love"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
+            android:textSize="30dp"
+            android:text="New Account"
+            android:layout_marginBottom="40dp"
             android:id="@+id/textView" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User name"
-            android:layout_marginTop="10dp"
-            android:textColor="#FFFFFF"
-            android:id="@+id/textView2" />
 
         <EditText
+            android:textColor="#FFFFFF"
+            android:paddingTop="10dp"
+            android:paddingLeft="2dp"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            android:hint="Username"
+            android:textColorHint="#FFFFFF"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:ems="10"
-            android:background="@drawable/rect_edit_shape"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
+            android:background="@drawable/login_page_box"
             android:id="@+id/editText_user_name"
           />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:layout_marginTop="10dp"
-            android:textColor="#FFFFFF"
-            android:id="@+id/textView3" />
 
         <EditText
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="2dp"
+            android:paddingBottom="10dp"
+            android:hint="Password"
+            android:textColorHint="#FFFFFF"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
             android:layout_marginTop="5dp"
-            android:background="@drawable/rect_edit_shape"
+            android:background="@drawable/login_page_box"
             android:id="@+id/editText_user_password"
             android:layout_gravity="center_horizontal" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Re-enter password"
-            android:layout_marginTop="10dp"
-            android:textColor="#FFFFFF"
-            android:id="@+id/textView8" />
 
         <EditText
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="2dp"
+            android:paddingBottom="10dp"
+            android:hint="Re-enter password"
+            android:textColorHint="#FFFFFF"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:layout_marginTop="5dp"
             android:ems="10"
-            android:background="@drawable/rect_edit_shape"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
+            android:background="@drawable/login_page_box"
             android:id="@+id/editText_user_re_enter_password"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            />
 
         <Button
+
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
+            android:textColor="#FFFFFF"
+            android:background="#F7B020"
+            android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register"
-            android:layout_marginTop="15dp"
+            android:text="Create Account"
+            android:layout_marginTop="30dp"
             android:id="@+id/btn_register" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:gravity="center|bottom"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +118,7 @@
             android:gravity="bottom"
             android:textColor="#FFFFFF"
             android:id="@+id/tv_back"
-            android:layout_gravity="center_horizontal" />
+            />
     </LinearLayout>
 
 </LinearLayout>

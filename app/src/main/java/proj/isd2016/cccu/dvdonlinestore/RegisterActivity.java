@@ -1,6 +1,9 @@
 package proj.isd2016.cccu.dvdonlinestore;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +11,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,6 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
         actionBar.hide();
     }
 
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -50,6 +56,41 @@ public class RegisterActivity extends AppCompatActivity {
         editText_login_userName = (EditText) findViewById(R.id.editText_user_name);
         editText_login_userPassword = (EditText) findViewById(R.id.editText_user_password);
         editText_login_re_enter = (EditText) findViewById(R.id.editText_user_re_enter_password);
+
+       /* editText_login_userName.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        Drawable img = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_face_white_18dp);
+                        img.setBounds(0, 0, 120,  120);
+                        editText_login_userName.setCompoundDrawables(img, null, null, null);
+                        editText_login_userName.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+
+        editText_login_userPassword.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        Drawable img = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_lock_outline_white_18dp);
+                        img.setBounds(0, 0, 120,  120);
+                        editText_login_userPassword.setCompoundDrawables(img, null, null, null);
+                        editText_login_userPassword.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+
+        editText_login_re_enter.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        Drawable img = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_lock_outline_white_18dp);
+                        img.setBounds(0, 0, 120,  120);
+                        editText_login_re_enter.setCompoundDrawables(img, null, null, null);
+                        editText_login_re_enter.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });*/
+
+        //
         btn_register = (Button) findViewById(R.id.btn_register);
         tv_back = (TextView) findViewById(R.id.tv_back);
 

@@ -1,6 +1,9 @@
 package proj.isd2016.cccu.dvdonlinestore;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +12,7 @@ import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -115,17 +119,47 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+
     private void initActionBar()
     {
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
     }
 
+
     private void initViews()
     {
         // init login editText //
         editText_login_userName = (EditText) findViewById(R.id.editText_user_name);
         editText_login_userPassword = (EditText) findViewById(R.id.editText_user_password);
+
+
+
+       /* editText_login_userName.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        Drawable img = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_face_white_18dp);
+                        img.setBounds(0, 0, 120,  120);
+                        editText_login_userName.setCompoundDrawables(img, null, null, null);
+                        editText_login_userName.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+
+        editText_login_userPassword.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        Drawable img = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_lock_outline_white_18dp);
+                        img.setBounds(0, 0, 120,  120);
+                        editText_login_userPassword.setCompoundDrawables(img, null, null, null);
+                        editText_login_userPassword.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
+*/
+
+        //
         tv_signUp = (TextView) findViewById(R.id.tv_signUP);
         btn_login = (Button) findViewById(R.id.btn_login);
 
