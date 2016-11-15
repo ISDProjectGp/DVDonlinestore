@@ -1,12 +1,181 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="proj.isd2016.cccu.dvdonlinestore.MoiveDetailActivity">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="proj.isd2016.cccu.dvdonlinestore.DetailsActivity"
+    android:background="#202020"
+    android:weightSum="1">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:fontFamily="sans-serif-light"
+        android:textStyle="normal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Sausage Party (2016)"
+        android:textSize="15sp"
+        android:id="@+id/textView10"
+        android:textColor="#FFFFFF"
+        android:background="#660000"
+        android:paddingLeft="8dp"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+  />
 
-</RelativeLayout>
+    <LinearLayout
+        android:paddingLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="154dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1"
+        android:paddingRight="5dp"
+        android:layout_weight="0.45">
+        <!--image-->
+        <ImageView
+
+            android:layout_marginRight="10dp"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/sausage"
+            android:id="@+id/poster"
+          />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:id="@+id/layout">
+
+            <TextView
+                android:fontFamily="sans-serif-light"
+                android:textStyle="normal"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="21dp"
+                android:textColor="#FFFFFF"
+                android:text="Sausage Party (2016)"
+                android:id="@+id/textView12"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:fontFamily="sans-serif-light"
+                android:textStyle="normal"
+                android:paddingTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:textSize="15dp"
+                android:textColor="#808080"
+                android:text="by Conrad Vernon"
+                android:id="@+id/textView8" />
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="1">
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/rate" />
+
+                <TextView
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="normal"
+                    android:paddingTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:textSize="25dp"
+                    android:textColor="#FFFFFF"
+                    android:text="3.5 / 4"
+                    android:id="@+id/textView2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:weightSum="1" >
+
+                <ImageView
+                    android:layout_width="68dp"
+                    android:layout_height="36dp"
+                    android:id="@+id/imageView4"
+                    android:src="@drawable/cup" />
+
+                <TextView
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="normal"
+                    android:paddingTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:textSize="25dp"
+                    android:textColor="#FFFFFF"
+                    android:text="1 win"
+                    android:id="@+id/textView3" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--line-->
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:paddingLeft="8dp"
+        android:paddingRight="5dp"
+        android:layout_marginBottom="7dp"
+        android:layout_height="wrap_content">
+        <!--Movie Name-->
+        <!--Onscreen date-->
+        <TextView
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="On screen date 1-15-2016"
+            android:id="@+id/textView14"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+         />
+        <!--Description-->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="The adventures of writer Newt Scamander in New York&apos;s secret community of witches and wizards seventy years before Harry Potter reads his book in school."
+            android:id="@+id/textView11"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+           />
+    </LinearLayout>
+
+    <Button
+     android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Purchase"
+        android:id="@+id/button"
+        android:background="#cc3300"
+        android:textColor="#FFFFFF"/>
+
+    <!-- line -->
+
+</LinearLayout>
