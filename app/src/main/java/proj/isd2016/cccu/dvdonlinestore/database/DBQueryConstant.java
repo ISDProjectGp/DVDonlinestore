@@ -27,7 +27,7 @@ public class DBQueryConstant {
 
     // SQL CREATE QUERY
     public static final String CREATE_MEMBER_TABLE = "Create table "+ MEMBER_TABLE_NAME +" ( " +
-            MEMBER_ID + " int ," +
+            MEMBER_ID + " varchar(40) ," +
             NAME + " varchar(40) PRIMARY KEY NOT NULL," +
             PASSWORD + " varchar(40) NOT NULL," +
             AGE + " int," +

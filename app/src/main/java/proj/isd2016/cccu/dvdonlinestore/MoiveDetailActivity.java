@@ -5,24 +5,36 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Random;
 
+import proj.isd2016.cccu.dvdonlinestore.database.Config;
 import proj.isd2016.cccu.dvdonlinestore.database.DBHelper;
 import proj.isd2016.cccu.dvdonlinestore.database.Moive;
+import proj.isd2016.cccu.dvdonlinestore.database.ShoppingCart;
+import proj.isd2016.cccu.dvdonlinestore.database.Singleton;
+import proj.isd2016.cccu.dvdonlinestore.database.YoutubeConnector;
 
-public class MoiveDetailActivity extends AppCompatActivity {
+public class MoiveDetailActivity extends CustomYoutubeBaseActivity {
 
     TextView tv_moive_tittle;
     TextView tv_moive_tittle2;
@@ -32,13 +44,17 @@ public class MoiveDetailActivity extends AppCompatActivity {
     Button btn_purchase;
     TextView tv_win;
 
+    Moive moive = null;
+    String moiveTitle = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moive_detail);
         initView();
-        initActionBar();
         getDetailsFromDatabase();
+        initYouTubeView();
+
     }
 
     private void initView()
@@ -53,10 +69,22 @@ public class MoiveDetailActivity extends AppCompatActivity {
 
     }
 
-    private void initActionBar()
+    private void initYouTubeView()
     {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+
+        new Thread(){
+            public void run(){
+                YoutubeConnector yc = new YoutubeConnector(getApplicationContext());
+                final String VIDEO_CODE = yc.search(moiveTitle);
+                handler.post(new Runnable(){
+                    public void run(){
+                        updateVideosFound(VIDEO_CODE);
+                    }
+                });
+            }
+        }.start();
+
     }
 
     private void getDetailsFromDatabase()
@@ -67,14 +95,31 @@ public class MoiveDetailActivity extends AppCompatActivity {
 
 
         DBHelper dbhelper = new DBHelper(getApplicationContext());
-        Moive moive =  dbhelper.getMoivesDetails(moiveid);
+        moive =  dbhelper.getMoivesDetails(moiveid);
+        moiveTitle = moive.getMoiveTitle();
 
-        tv_moive_tittle.setText(moive.getMoiveTitle());
-        tv_moive_tittle2.setText(moive.getMoiveTitle());
+        tv_moive_tittle.setText(moiveTitle);
+        tv_moive_tittle2.setText(moiveTitle);
         tv_summary.setText(moive.getSummary());
         tv_star.setText(String.valueOf(moive.getRating()));
         loadImageFromStorage(getApplicationContext(), moiveid, im_poster);
         btn_purchase.setText(btn_purchase.getText() + "  $" + moive.getPrice());
+
+        btn_purchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (moive != null)
+                {
+                    Singleton singleton = Singleton.getSingleton();
+                    ShoppingCart shoppingCart = singleton.getShoppingCart();
+                    shoppingCart.addMoive(moive);
+                    Toast.makeText(MoiveDetailActivity.this, "Moive is added to the shopping cart", Toast.LENGTH_SHORT).show();
+                } else
+                {
+                    Toast.makeText(MoiveDetailActivity.this, "Error in adding", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         Random random = new Random();
         tv_win.setText(String.valueOf(random.nextInt(5)));
@@ -98,7 +143,7 @@ public class MoiveDetailActivity extends AppCompatActivity {
             img.setImageBitmap(b);
         } catch (FileNotFoundException e) {
         }
-    }
 
+    }
 
 }

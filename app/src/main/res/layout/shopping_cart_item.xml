@@ -3,37 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#202020"
+    android:background="#FFFFFF"
     android:orientation="horizontal"
     tools:context="proj.isd2016.cccu.dvdonlinestore.purchaseItem"
-
     >
 
     <LinearLayout
+
         android:paddingLeft="5dp"
         android:orientation="horizontal"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="117dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:weightSum="1"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp"
         android:paddingRight="5dp">
         <!--image-->
         <ImageView
 
             android:layout_marginRight="10dp"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:src="@drawable/sausage"
-            android:id="@+id/poster"
+            android:id="@+id/cart_moive_poster"
             />
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="217dp"
+            android:layout_width="188dp"
             android:layout_height="120dp"
-            android:weightSum="1"
-            android:id="@+id/layout">
+
+            android:id="@+id/layout"
+            android:layout_weight="0.17">
 
             <TextView
                 android:fontFamily="sans-serif-light"
@@ -41,10 +44,10 @@
                 android:paddingTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="21dp"
-                android:textColor="#FFFFFF"
+                android:textSize="14dp"
+                android:textColor="#000000"
                 android:text="Sausage Party (2016)"
-                android:id="@+id/textView12"
+                android:id="@+id/cart_moive_name"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
@@ -53,8 +56,8 @@
                 android:paddingTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textColor="#808080"
+                android:textSize="9dp"
+                android:textColor="#000000"
                 android:text="by Conrad Vernon"
                 android:id="@+id/textView8" />
 
@@ -69,25 +72,32 @@
                 <TextView
                     android:fontFamily="sans-serif-light"
                     android:textStyle="normal"
-                    android:layout_width="185dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textColor="#FFFFFF"
+                    android:layout_width="148dp"
+                    android:layout_height="match_parent"
+                    android:textSize="17dp"
+                    android:textColor="#000000"
                     android:text="$545"
-                    android:id="@+id/textView2" />
+                    android:id="@+id/cart_moive_price" />
 
                 <TextView
                     android:fontFamily="sans-serif-light"
                     android:textStyle="normal"
                     android:layout_width="match_parent"
                     android:layout_height="39dp"
-                    android:textSize="20dp"
-                    android:textColor="#FFFFFF"
-                    android:text="1"
-                    android:id="@+id/textView13" />
+                    android:textSize="17dp"
+                    android:textColor="#000000"
+                    android:text="×1"
+                    android:id="@+id/quat_tv" />
             </LinearLayout>
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/btn_bin"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/bin" />
 
         <!--line-->
 

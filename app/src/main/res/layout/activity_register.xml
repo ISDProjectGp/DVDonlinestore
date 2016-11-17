@@ -87,6 +87,25 @@
             android:layout_gravity="center_horizontal"
             />
 
+        <EditText
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:paddingTop="10dp"
+            android:paddingLeft="2dp"
+            android:paddingBottom="10dp"
+            android:hint="Age"
+            android:textColorHint="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:layout_marginTop="5dp"
+            android:ems="10"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="normal"
+            android:background="@drawable/login_page_box"
+            android:id="@+id/tv_age"
+            android:layout_gravity="center_horizontal" />
+
         <Button
 
             android:fontFamily="sans-serif-light"

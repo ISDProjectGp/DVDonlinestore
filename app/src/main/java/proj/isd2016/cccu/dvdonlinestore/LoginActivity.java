@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView tv_signUp;
     private static final String FAIL_LOGIN_MESSAGE = "Wrong password or user name";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

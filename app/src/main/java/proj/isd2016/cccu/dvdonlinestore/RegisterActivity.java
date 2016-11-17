@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editText_login_re_enter;
     private TextView tv_back;
     private Button btn_register;
+    private EditText editText_age;
     private static final String FAIL_REGISTER_MESSAGE = "User name already exists";
 
     @Override
@@ -34,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         initViews();
         initActionBar();
+
+
     }
 
     private void initActionBar()
@@ -56,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         editText_login_userName = (EditText) findViewById(R.id.editText_user_name);
         editText_login_userPassword = (EditText) findViewById(R.id.editText_user_password);
         editText_login_re_enter = (EditText) findViewById(R.id.editText_user_re_enter_password);
+        editText_age =  (EditText) findViewById(R.id.tv_age);
 
        /* editText_login_userName.getViewTreeObserver()
                 .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -113,21 +117,22 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final int AGE = 1; // TODO: ASK USER TO INPUT THE AGE
+                String age =  editText_age.getText().toString();
                 String userName = editText_login_userName.getText().toString();
                 String password = editText_login_userPassword.getText().toString();
+
 
                 Singleton singleton = Singleton.getSingleton();
 
             if (editText_login_re_enter.getText().toString().equals(password))
             {
                 // TODO: INTPUT VALIDATION
-                if (singleton.register(getApplicationContext(),userName,password,AGE))
+                if (singleton.register(getApplicationContext(),userName,password,Integer.valueOf(age)))
                 {
                     Intent intent = new Intent();
                     intent.setClass(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(RegisterActivity.this, "Welcome to TaoMoive", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Welcome to Moive", Toast.LENGTH_SHORT).show();
                 } else
                 {
                     Toast.makeText(RegisterActivity.this, FAIL_REGISTER_MESSAGE, Toast.LENGTH_SHORT).show();

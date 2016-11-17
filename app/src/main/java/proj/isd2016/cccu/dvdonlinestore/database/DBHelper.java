@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by cheng on 18/10/2016.
@@ -43,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (account == null | account.getName()== null || account.getPassword() == null || account.getAge() == 0 ) return false;
 
         ContentValues cv = new ContentValues();
+        cv.put(DBQueryConstant.MEMBER_ID,RandomIDGen());
         cv.put(DBQueryConstant.NAME,account.getName());
         cv.put(DBQueryConstant.PASSWORD, account.getPassword());
         cv.put(DBQueryConstant.AGE, account.getAge());
@@ -53,6 +55,12 @@ public class DBHelper extends SQLiteOpenHelper {
             return loginQuery(account);
         }
         return false;
+    }
+
+    private String RandomIDGen()
+    {
+        Random  rand = new Random();
+        return  String.valueOf(rand.nextInt(5000000));
     }
 
     public boolean updateCreditQuery(Account account)
@@ -170,7 +178,7 @@ public class DBHelper extends SQLiteOpenHelper {
         while (cursor.moveToNext()) {
             account.setName(cursor.getString(0));
             account.setAge(cursor.getInt(1));
-            account.setMemberID(cursor.getInt(2));
+            account.setMemberID(cursor.getString(2));
             account.setCredit(cursor.getInt(3));
         }
       return cursor.getCount() >= 1;

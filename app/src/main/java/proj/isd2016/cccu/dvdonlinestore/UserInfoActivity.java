@@ -29,8 +29,9 @@ public class UserInfoActivity extends BaseActivity {
         Singleton singleton = Singleton.getSingleton();
         editText_username.setText(singleton.getName());
         editText_credit.setText(String.valueOf(singleton.getCredit()));
+        editText_userid.setText(singleton.getMemberID());
+        editText_age.setText(String.valueOf(singleton.getAge()));
 
-        //TODO AGE AND ID
     }
 
     private void initActionBar() {

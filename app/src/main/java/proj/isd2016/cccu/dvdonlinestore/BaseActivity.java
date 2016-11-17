@@ -60,7 +60,7 @@ public class BaseActivity extends AppCompatActivity {
         List<Map<String,Object>> drawerDataList = new ArrayList<>();
         // Init the data in drawerDataList
         String[] drawer_text_items = getResources().getStringArray(R.array.drawer_items);
-        int[] drawer_image_items =  {R.drawable.ic_art_track_white_24dp,R.drawable.ic_account_box_white_24dp,R.drawable.ic_shopping_cart_white_24dp,R.drawable.ic_exit_to_app_white_24dp};
+        int[] drawer_image_items =  {R.drawable.ic_movie_white_18dp,R.drawable.ic_account_circle_white_18dp,R.drawable.ic_shopping_cart_white_18dp,R.drawable.ic_exit_to_app_white_18dp};
         for (int i=0;i<drawer_text_items.length;i++)
         {
             Map<String,Object> item = new HashMap<>();

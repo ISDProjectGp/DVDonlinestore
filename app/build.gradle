@@ -26,4 +26,18 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile files('libs/jsoup-1.10.1.jar')
     compile 'com.wang.avi:library:2.1.3'
+
+
+    compile files('libs/google-api-client-1.22.0.jar')
+    compile files('libs/google-api-client-android-1.21.0.jar')
+    compile files('libs/google-api-client-jackson2-1.22.0.jar')
+    compile files('libsgoogle-http-client-1.22.0.jar')
+    compile files('libs/google-http-client-android-1.21.0.jar')
+    compile files('libs/google-http-client-jackson2-1.21.0.jar')
+
+    compile files('libs/google-oauth-client-1.21.0-sources.jar')
+    compile files('libs/jackson-core-2.1.3.jar')
+
+    compile files('libs/jsr305-1.3.9.jar')
+
 }

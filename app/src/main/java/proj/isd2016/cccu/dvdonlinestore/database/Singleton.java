@@ -106,6 +106,19 @@ public final class Singleton {
         }
     }
 
+    public boolean isPayable()
+    {
+        return account.isPayable();
+    }
 
+    public boolean isCartEmpty()
+    {
+        return account.getShoppingCart().isEmpty();
+    }
+
+    public String getMemberID()
+    {
+        return account.getMemberID();
+    }
 
 }

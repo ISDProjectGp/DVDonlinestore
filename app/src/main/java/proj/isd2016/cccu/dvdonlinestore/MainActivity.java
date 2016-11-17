@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteCursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -140,6 +142,7 @@ public class MainActivity extends BaseActivity {
     private void initActionBar()
     {
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#009900")));
         actionBar.setTitle(getResources().getStringArray(R.array.drawer_items)[0]);
     }
 

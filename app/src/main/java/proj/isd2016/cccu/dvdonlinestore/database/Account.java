@@ -15,14 +15,15 @@ public class Account {
 
     private int age ;
     private int credit ;
-    private int memberID ;
+    private String memberID ;
 
     private ShoppingCart shoppingCart;
 
     public Account(String name ,String password) {
         this.name = name;
         this.password = password;
-        age = credit = memberID = 0;
+        age = credit = 0 ;
+        String memberID = "NaN";
         this.shoppingCart = new ShoppingCart();
     }
 
@@ -42,11 +43,11 @@ public class Account {
         return credit;
     }
 
-    public int getMemberID() {
+    public String getMemberID() {
         return memberID;
     }
 
-    public void setMemberID(int memberID) {
+    public void setMemberID(String memberID) {
         this.memberID = memberID;
     }
 
@@ -66,12 +67,18 @@ public class Account {
         this.age = age;
     }
 
+    public boolean isPayable()
+    {
+        return credit>=shoppingCart.getCartTotalCredit();
+    }
+
     public boolean pay(Context context)
     {
-        if (credit>=shoppingCart.getCartTotalCredit())
+        if (isPayable())
         {
             DBHelper dbhelper = new DBHelper(context);
             credit-=shoppingCart.getCartTotalCredit();
+            System.out.println("patt");
             if (dbhelper.updateCreditQuery(this))
             {
                 shoppingCart.clearShoppingCart();
@@ -81,4 +88,6 @@ public class Account {
         }
         return false;
     }
+
+
 }

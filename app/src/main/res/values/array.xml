@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="drawer_items">
-        <item>Home Page</item>
-        <item>User Info</item>
-        <item>Shopping Cart</item>
-        <item>Logout</item>
+        <item>Moives</item>
+        <item>Userinfo</item>
+        <item>Shoppingcart</item>
+        <item>Signout</item>
     </string-array>
 </resources>
